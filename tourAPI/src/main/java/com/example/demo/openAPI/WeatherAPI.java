@@ -17,16 +17,17 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class WeatherAPI {
 	
 	public List<Map<String, Object>> weatherapi() throws  Exception{
 		List<Map<String, Object>> listSender = new ArrayList<Map<String, Object>>();
     	
-    	StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_trrsrt_api"); /*URL*/
-    	urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=aasHED3bst0g88b83CZtSxBMy4E9Hs8SolO7YN6%2FuZrdVtkMin4ESISde9XX6CC2vlfhyExKSVG7%2FgKzwnhxgA%3D%3D"); /*Service Key*/
+    	StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/SfcMtlyInfoService/getMmSumry"); /*URL*/
+    	urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "T4JUE2qkZe37g1SxiR07OVJuhoqbOSw%2FbmvlyFq5ixpp6dMB1EUnuPS9CgnlVuM%2Fk7Ktnlxj%2FjdxQKZ5tOubKw%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("926", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("20", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*XML/JSON 여부*/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -54,36 +55,40 @@ public class WeatherAPI {
         JSONObject parse_response = (JSONObject) object.get("response");
         JSONObject parse_body = (JSONObject) parse_response.get("body");
         JSONArray parse_items = (JSONArray) parse_body.get("items");
-        
-        String trrsrtNm ="";
-        String rdnmadr = "";
-        String lnmadr = "";
-        String latitude = "";
-        String longitude = "";
-        String trrsrtIntrcn = "";
-        String prkplceCo = "";
-        String phoneNumber = "";
+//        
+//        String trrsrtNm ="";
+//        String rdnmadr = "";
+//        String lnmadr = "";
+//        String latitude = "";
+//        String longitude = "";
+//        String trrsrtIntrcn = "";
+//        String prkplceCo = "";
+//        String phoneNumber = "";
         
         for(int i = 0 ; i<parse_items.size();i++){
     		Map<String, Object> map = new HashMap<>();
         			object = (JSONObject) parse_items.get(i);
-                    trrsrtNm = (String) object.get("trrsrtNm"); 
-                    rdnmadr = (String) object.get("rdnmadr"); 
-                    lnmadr = (String) object.get("lnmadr"); 
-                    latitude = (String) object.get("latitude"); 
-                    longitude = (String) object.get("longitude"); 
-                    trrsrtIntrcn = (String) object.get("trrsrtIntrcn"); 
-                    prkplceCo = (String) object.get("prkplceCo"); 
-                    phoneNumber = (String) object.get("phoneNumber"); 
-                    
-                    map.put("trrsrtNm", trrsrtNm);
-                    map.put("rdnmadr", rdnmadr);
-                    map.put("lnmadr", lnmadr);
-                    map.put("latitude", latitude);
-                    map.put("longitude", longitude);
-                    map.put("trrsrtIntrcn", trrsrtIntrcn);
-                    map.put("prkplceCo", prkplceCo);
-                    map.put("phoneNumber", phoneNumber);
+        			Object stnid = (String) object.get("stnid"); 
+        			Object stnko = (String) object.get("stnko"); 
+        			Object pa = (String) object.get("pa"); 
+        			Object ps = (String) object.get("ps"); 
+        			Object avgtamax = (String) object.get("avgtamax"); 
+        			Object avgtamin = (String) object.get("avgtamin"); 
+        			Object taavg  = (String) object.get("taavg"); 
+        			Object tamin   = (String) object.get("tamin"); 
+                    Object avgtgmin = (String) object.get("avgtgmin"); 
+                    		
+                    		
+                    		
+                    map.put("stnid", stnid);
+                    map.put("stnko", stnko);
+                    map.put("pa", pa);
+                    map.put("ps", ps);
+                    map.put("avgtamax", avgtamax);
+                    map.put("avgtamin", avgtamin);
+                    map.put("taavg", taavg);
+                    map.put("tamin", tamin);
+                    map.put("avgtgmin", avgtgmin);
                     listSender.add(map);
                    // System.out.println(listSender); 
                     
