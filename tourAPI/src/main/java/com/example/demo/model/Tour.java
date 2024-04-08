@@ -7,13 +7,13 @@ import lombok.Data;
 @Data
 @Alias("tour")
 public class Tour {
-	private String trrsrtNm;
-	private String rdnmadr;
-	private String lnmadr;
-	private String latitude;
-	private String longitude;
-	private String trrsrtIntrcn;
-	private String prkplceCo;
-	private String phoneNumber;
-	
+	private String stnid;
+	private String stnko;
+	private String pa;
+	private String ps;
+	private String avgtamax;
+	private String avgtamin;
+	private String taavg;
+	private String tamin;
+	private String avgtgmin;
 }
