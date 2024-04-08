@@ -6,14 +6,15 @@
 
 <insert id="insert" parameterType="list">
 	insert into tour(
-	trrsrtNm,
-	rdnmadr,
-	lnmadr,
-	latitude,
-	longitude,
-	trrsrtIntrcn,
-	prkplceCo,
-	phoneNumber,
+	stnid,
+	stnko,
+	pa,
+	ps,
+	avgtamax,
+	avgtamin,
+	taavg,
+	tamin,
+	avgtgmin,
 	)values()
 </insert>
 
