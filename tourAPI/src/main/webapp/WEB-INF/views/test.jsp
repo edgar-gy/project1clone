@@ -17,14 +17,15 @@
 			console.log("성공");
 			$.each(data, function(index, item){
 			$("#apitest").append((index+1) + "<br>"); // index가 끝날때까지 
-			$("#apitest").append("광광지= " + item.trrsrtNm + ",<br>");
-			$("#apitest").append("도로명= " + item.rdnmadr + ",<br>");
-			$("#apitest").append("지번= " + item.lnmadr + ",<br>");
-			$("#apitest").append("위도= " + item.latitude + ",<br>");
-			$("#apitest").append("경도=" + item.longitude + ",<br>");
-			$("#apitest").append("설명=" + item.trrsrtIntrcn + "<br>");
-			$("#apitest").append("주차가능수=" + item.prkplceCo + "<br>");
-			$("#apitest").append("관리기능전화번호=" + item.phoneNumber + "<br>");
+			$("#apitest").append("지역번호= " + item.stnid + ",<br>");
+			$("#apitest").append("지역명(국문)= " + item.stnko + ",<br>");
+			$("#apitest").append("기압-평균현지= " + item.pa + ",<br>");
+			$("#apitest").append("기압-평균해면= " + item.ps + ",<br>");
+			$("#apitest").append("기온-최고평균=" + item.avgtamax + ",<br>");
+			$("#apitest").append("기온-최저평균=" + item.avgtamin + "<br>");
+			$("#apitest").append("기온-평균=" + item.taavg + "<br>");
+			$("#apitest").append("기온-최고-최고=" + item.tamin + "<br>");
+			$("#apitest").append("기온-최저-최저=" + item.avgtgmin + "<br>");
 			});
 		},
 		error: function(xhr, status, error) {
